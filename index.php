@@ -81,8 +81,9 @@ require('wideimage/lib/WideImage.php');
 		$photosdate = $_POST['data_das_fotos']; 
 		$rover = $_POST['select_rover'];
 		$images = json_decode($Mars->getPictures($photosdate, $rover));
+    //var_dump($images);
 	}
-	if (isset($images) && empty($images)) {
+	if (!isset($images->photos)) {
 		echo "No images found :(";
 	
 	}elseif(isset($images)){?>

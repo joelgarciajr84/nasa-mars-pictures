@@ -13,7 +13,7 @@ $Mars = new HelloMars();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Fotos de Marte</title>
+  <title>Pesquise as Fotos de Marte</title>
 
 
   <!-- Bootstrap -->
@@ -74,7 +74,7 @@ $Mars = new HelloMars();
     text-align: center !important;
   }
   </style>
-<div class="row row-header">
+<div class="row row-header" id="top">
   <div class="container">
 
 
@@ -150,8 +150,8 @@ $Mars = new HelloMars();
     $rover = $_POST['select_rover'];
     $images = json_decode($Mars->getPictures($photosdate, $rover));
   }
-  if (isset($images) && empty($images)) {
-    echo "No images found :(";
+  if (isset($images) && !isset($images->photos)) {
+echo '<script type="text/javascript">alert("Nada encontrado!");</script>';
 
   }elseif(isset($images)){?>
     <div class="container container-result" id="resultado">
@@ -197,19 +197,10 @@ $Mars = new HelloMars();
 
         </tbody>
       </table>
+      <?php   if (isset($images) && isset($images->photos)):?>
+      <a href="#top">Voltar ao topo (nova pesquisa)</a>
+      <br>
+      <a href="#resultado">Voltar ao topo do resultado</a>
+    <?php endif; ?>
     </div>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">

@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('Class_HelloMars.php');
 $Mars = new HelloMars();
-require('wideimage/lib/WideImage.php');
+#require('wideimage/lib/WideImage.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@ require('wideimage/lib/WideImage.php');
       <hr>
     </div>
     <div align="center">
-      <form method="post" action="" >
+      <form method="post" action="#resultado" >
         <fieldset>
 
           <!-- Form Name -->
@@ -154,7 +154,7 @@ require('wideimage/lib/WideImage.php');
     echo "No images found :(";
 
   }elseif(isset($images)){?>
-    <div class="container container-result">
+    <div class="container container-result" id="resultado">
       <h2>Resultados:</h2>
       <div class="table-responsive">
         <table class="table">

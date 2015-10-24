@@ -1,7 +1,4 @@
 <?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 class  HelloMars 
 {
 	function __construct(){
@@ -11,7 +8,7 @@ class  HelloMars
 			"spirit"=>'Spirit'
 			);
 		$this->date = date('Y-m-d');
-		$this->apikey =  "HnEJExm3EhGjyVLh2OKoo5wDdLSbTNATfBgFHo9m";
+		$this->apikey =  ""; //Your Nasa API Key here
 		$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 	}
 

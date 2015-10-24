@@ -1,5 +1,7 @@
 <?php 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once('Class_HelloMars.php');
 $Mars = new HelloMars();
 require('wideimage/lib/WideImage.php');
@@ -83,7 +85,7 @@ require('wideimage/lib/WideImage.php');
 	if (isset($images) && empty($images)) {
 		echo "No images found :(";
 	
-	}elseif(isset($images) && is_array($images)){?>
+	}elseif(isset($images)){?>
 	<div class="container">
   <h2>Resultados:</h2>                                                                                      
   <div class="table-responsive">     

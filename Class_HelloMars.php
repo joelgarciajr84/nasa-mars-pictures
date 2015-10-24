@@ -1,5 +1,5 @@
-<?php 
-class  HelloMars 
+<?php
+class  HelloMars
 {
 	function __construct(){
 		$this->rovers = array(

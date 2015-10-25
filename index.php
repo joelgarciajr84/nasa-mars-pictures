@@ -151,7 +151,7 @@ $Mars = new HelloMars();
     $images = json_decode($Mars->getPictures($photosdate, $rover));
   }
   if (isset($images) && !isset($images->photos)) {
-echo '<script type="text/javascript">alert("Nada encontrado!");</script>';
+echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta outra!?");</script>';
 
   }elseif(isset($images)){?>
     <div class="container container-result" id="resultado">

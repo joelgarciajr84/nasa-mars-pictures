@@ -102,7 +102,7 @@ $Mars = new HelloMars();
           <div  class="form-group">
             <label class="col-md-4 control-label" for="Data">Data das Fotos</label>
             <div class="col-md-5">
-              <input id="Data" name="data_das_fotos" type="date" max="2015-10-13"placeholder="Data das fotos" class="form-control input-md" required="">
+              <input id="Data" name="data_das_fotos" type="date"  class="form-control input-md" required="">
             </div>
           </div>
           <br>
@@ -113,6 +113,7 @@ $Mars = new HelloMars();
               <select required  id="select_rover" name="select_rover" class="form-control">
                 <option  value="">Selecione</option>
                 <?php
+                
                 foreach ($Mars->rovers as $key => $value) {?>
                   <option value="<?php echo $key ?>"><?php echo $value ?></option>
                   <?php } ?>

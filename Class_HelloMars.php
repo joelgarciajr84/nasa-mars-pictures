@@ -1,7 +1,6 @@
 <?php
 class  HelloMars
-{
-	function __construct(){
+{	function __construct(){
 		$this->rovers = array(
 			"curiosity" => 'Curiosity',
 			"opportunity"=>'Opportunity',
@@ -11,8 +10,6 @@ class  HelloMars
 		$this->apikey =  "HnEJExm3EhGjyVLh2OKoo5wDdLSbTNATfBgFHo9m";
 		$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 	}
-
-
 	public function getPictures($date,$rover){
 		$this->date = $date;
 		$this->rover = $rover;

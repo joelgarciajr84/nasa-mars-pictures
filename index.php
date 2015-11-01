@@ -1,80 +1,36 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once('Class_HelloMars.php');
 $Mars = new HelloMars();
-#require('wideimage/lib/WideImage.php');
+
+if(isset($_POST['data_das_fotos']) && isset($_POST['select_rover'])){
+  $photosdate   = $_POST['data_das_fotos'];
+  $rover        = $_POST['select_rover'];
+  $images       = json_decode($Mars->getPictures($photosdate, $rover));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Pesquise as Fotos de Marte</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pesquise as Fotos de Marte</title>
 
-  <!-- Bootstrap -->
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <a href="https://github.com/joelgarciajr84/nasa-mars-pictures"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
-  <style>
-  body {
-    background: #000;
-  }
 
-  h1,h2,h3,h4,h5,h6 {
-    font-family: font-family: 'Ubuntu', sans-serif;
-  }
-  .row-header {
-    background: url('images/background.jpg');
-    background-size: 100%;
-    margin-bottom: 50px;
-  }
-
-  .container-result {
-    background-color: #FFF;
-    padding: 25px;
-  }
-  .box-api {
-    margin-top: 100px;
-    margin-bottom: 150px;
-    padding: 25px;
-    width: 35%;
-    margin-left: 50%;
-    background-color: rgba(98,40,25,0.7);
-    border-radius: 5px;
-    color: #FFF;
-    text-align: left;
-    font-family: arial, sans-serif;
-    font-weight: bolder;
-
-
-  }
-  .welcome {
-    float:left;
-    color:#FFF;
-    margin-top: 220px;
-    text-shadow: 9px 4px 17px rgba(7, 7, 7, 0.73);
-    font-family: 'Ubuntu', sans-serif;
-  }
-  .welcome p {
-    color: #FFF;
-    font-size: 19px;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    text-shadow: 3px 2px 4px rgba(7, 7, 7, 0.98);
-    line-height: 1.5em;
-  }
-  td{
-    text-align: center !important;
-  }
-  </style>
 <div class="row row-header" id="top">
   <div class="container">
 
@@ -102,7 +58,7 @@ $Mars = new HelloMars();
           <div  class="form-group">
             <label class="col-md-4 control-label" for="Data">Data das Fotos</label>
             <div class="col-md-5">
-              <input id="Data" name="data_das_fotos" type="date"  class="form-control input-md" required="">
+              <input id="Data" name="data_das_fotos" type="date" value="<?php echo $photosdate; ?>"class="form-control input-md" required>
             </div>
           </div>
           <br>
@@ -111,12 +67,13 @@ $Mars = new HelloMars();
             <label class="col-md-4 control-label" for="select_rover">Selecione o Robô</label>
             <div class="col-md-4">
               <select required  id="select_rover" name="select_rover" class="form-control">
-                <option  value="">Selecione</option>
+                <option value="">Selecione</option>
                 <?php
-                
-                foreach ($Mars->rovers as $key => $value) {?>
-                  <option value="<?php echo $key ?>"><?php echo $value ?></option>
-                  <?php } ?>
+                    foreach ($Mars->rovers as $key => $value):?>
+                        <option value="<?php echo $key;?>" <?php if ($rover == $key) {
+                            echo "selected";
+                        } ?>><?php echo $value;?></option>
+                        <?php endforeach;?>
                 </select>
               </div>
             </div>
@@ -133,10 +90,12 @@ $Mars = new HelloMars();
   </div>
   </div>
 </div>
+<?php
+if (isset($images) && !isset($images->photos)) {
+echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta outra!?");</script>';
 
-
-
-
+}else{
+ ?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="bootstrap/js/jquery.js"></script>
@@ -146,16 +105,7 @@ $Mars = new HelloMars();
 
   </body>
   </html>
-  <?php
-  if(isset($_POST['data_das_fotos']) && isset($_POST['select_rover'])){
-    $photosdate = $_POST['data_das_fotos'];
-    $rover = $_POST['select_rover'];
-    $images = json_decode($Mars->getPictures($photosdate, $rover));
-  }
-  if (isset($images) && !isset($images->photos)) {
-echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta outra!?");</script>';
 
-  }elseif(isset($images)){?>
     <div class="container container-result" id="resultado">
       <h2>Resultados:</h2>
       <div class="table-responsive">
@@ -193,7 +143,7 @@ echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta ou
                 <?php
               }
             }
-          }
+        }
 
           ?>
 

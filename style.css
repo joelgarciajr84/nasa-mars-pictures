@@ -1,0 +1,50 @@
+body {
+  background: #000;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: font-family: 'Ubuntu', sans-serif;
+}
+.row-header {
+  background: url('images/background.jpg');
+  background-size: 100%;
+  margin-bottom: 50px;
+}
+
+.container-result {
+  background-color: #FFF;
+  padding: 25px;
+}
+.box-api {
+  margin-top: 100px;
+  margin-bottom: 150px;
+  padding: 25px;
+  width: 35%;
+  margin-left: 50%;
+  background-color: rgba(98,40,25,0.7);
+  border-radius: 5px;
+  color: #FFF;
+  text-align: left;
+  font-family: arial, sans-serif;
+  font-weight: bolder;
+
+
+}
+.welcome {
+  float:left;
+  color:#FFF;
+  margin-top: 220px;
+  text-shadow: 9px 4px 17px rgba(7, 7, 7, 0.73);
+  font-family: 'Ubuntu', sans-serif;
+}
+.welcome p {
+  color: #FFF;
+  font-size: 19px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  text-shadow: 3px 2px 4px rgba(7, 7, 7, 0.98);
+  line-height: 1.5em;
+}
+td{
+  text-align: center !important;
+}

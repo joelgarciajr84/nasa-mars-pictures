@@ -69,11 +69,15 @@ if(isset($_POST['data_das_fotos']) && isset($_POST['select_rover'])){
               <select required  id="select_rover" name="select_rover" class="form-control">
                 <option value="">Selecione</option>
                 <?php
+                if(is_array($Mars->rovers)):
                     foreach ($Mars->rovers as $key => $value):?>
-                        <option value="<?php echo $key;?>" <?php if ($rover == $key) {
+                        <option value="<?php echo $key;?>" <?php if(isset($rover) && $rover == $key) {
                             echo "selected";
                         } ?>><?php echo $value;?></option>
-                        <?php endforeach;?>
+                    <?php
+                    endforeach;
+                endif;
+                ?>
                 </select>
               </div>
             </div>
@@ -105,7 +109,7 @@ echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta ou
 
   </body>
   </html>
-
+<?php if(isset($images)): ?>
     <div class="container container-result" id="resultado">
       <h2>Resultados:</h2>
       <div class="table-responsive">
@@ -123,6 +127,7 @@ echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta ou
           </thead>
           <tbody>
             <?php
+
             foreach ($images as $image) {
               for ($i=0; $i < count($image); $i++) { ?>
 
@@ -143,6 +148,7 @@ echo '<script type="text/javascript">alert("Nada encontrado nessa data, tenta ou
                 <?php
               }
             }
+        endif;
         }
 
           ?>

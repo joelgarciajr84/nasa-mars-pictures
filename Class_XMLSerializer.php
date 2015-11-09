@@ -10,7 +10,6 @@ class XMLSerializer {
 
     public static function generateValidXmlFromArray($array, $node_block='nodes', $node_name='node') {
         $xml = '<?xml version="1.0" encoding="UTF-8" ?>';
-
         $xml .= '<' . $node_block . '>';
         $xml .= self::generateXmlFromArray($array, $node_name);
         $xml .= '</' . $node_block . '>';

@@ -2,7 +2,7 @@
 header("Content-type: text/xml");
 
 echo "<?xml version='1.0' encoding='UTF-8'?>
-<rss version='2.0' xmlns:w='shttp://tempuri.org'>
+<rss version='2.0' xmlns:w='http://tempuri.org'>
 	xmlns:wfw='http://wellformedweb.org/CommentAPI/'
 	xmlns:dc='http://purl.org/dc/elements/1.1/'
 	xmlns:atom='http://www.w3.org/2005/Atom'
@@ -37,6 +37,8 @@ foreach ($images as $image) {
         'rover_name'    =>  $image[$i]->rover->name
     );*/
     $rssfeed .= '<item>';
+    $rssfeed .= '<title>' . $image[$i]->id. '</title>';
+    $rssfeed .= '<guid>' . $image[$i]->img_src. '</guid>';
     $rssfeed .= '<w:id>' . $image[$i]->id. '</w:id>';
     $rssfeed .= '<w:sol>' . $image[$i]->sol. '</w:sol>';
     $rssfeed .= '<w:camera_name>' . $image[$i]->camera->name . '</w:camera_name>';

@@ -1,6 +1,26 @@
 body {
   background: #000;
 }
+.red{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 20px;
+    position: absolute;
+    float: left;
+    left: 3px;
+}
+
+.green{
+    width: 30px;
+    height: 30px;
+    background-color: chartreuse;
+    border-radius: 20px;
+    position: absolute;
+    float: left;
+    left: 3px;
+
+}
 
 h1,h2,h3,h4,h5,h6 {
   font-family: font-family: 'Ubuntu', sans-serif;

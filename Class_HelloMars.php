@@ -16,6 +16,18 @@ class  HelloMars
 
 	}
 
+	public function CheckConnection(){
+	    $connected = @fsockopen("www.google.com", 80);
+	    if (!$connected){
+
+			$connStatus = false;
+
+	    }else{
+	        $connStatus = true;
+
+		}
+		return $connStatus;
+	}
 
 	public function getPictures($date,$rover){
 		$this->date = $date;

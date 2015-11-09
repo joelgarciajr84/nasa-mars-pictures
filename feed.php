@@ -13,8 +13,7 @@ xmlns:content='http://purl.org/rss/1.0/modules/content/'
 <title>NASA PHOTOS</title>
 <link>https://marspictures.herokuapp.com/</link>
 <description>Nasa Photos</description>
-<language>en-us</language>
-<id>unique photo id</id>";
+<language>en-us</language>";
 require 'rover.php';
 $Mars = new HelloMars();
 $xml = new XMLSerializer();

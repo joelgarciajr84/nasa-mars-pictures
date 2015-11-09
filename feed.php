@@ -38,12 +38,12 @@ foreach ($images as $image) {
         'rover_name'    =>  $image[$i]->rover->name
     );*/
     $rssfeed .= '<item>';
-    $rssfeed .= '<id>' . $image[$i]->id. '</id>';
-    $rssfeed .= '<sol>' . $image[$i]->sol. '</sol>';
-    $rssfeed .= '<camera_name>' . $image[$i]->camera->name . '</camera_name>';
-    $rssfeed .= '<img_src>' . $image[$i]->img_src . '</img_src>';
-    $rssfeed .= '<earth_date>' . date("d/m/Y",strtotime($image[$i]->earth_date)) . '</earth_date>';
-    $rssfeed .= '<rover_name>' . $image[$i]->rover->name. '</rover_name>';
+    $rssfeed .= '<dc:id>' . $image[$i]->id. '</dc:id>';
+    $rssfeed .= '<dc:sol>' . $image[$i]->sol. '</dc:sol>';
+    $rssfeed .= '<dc:camera_name>' . $image[$i]->camera->name . '</dc:camera_name>';
+    $rssfeed .= '<dc:img_src>' . $image[$i]->img_src . '</dc:img_src>';
+    $rssfeed .= '<dc:earth_date>' . date("d/m/Y",strtotime($image[$i]->earth_date)) . '</dc:earth_date>';
+    $rssfeed .= '<dc:rover_name>' . $image[$i]->rover->name. '</dc:rover_name>';
     $rssfeed .= '<pubDate>' . date("D, d M Y H:i:s O", strtotime($image[$i]->earth_date)) . '</pubDate>';
     $rssfeed .= '</item>';
     }

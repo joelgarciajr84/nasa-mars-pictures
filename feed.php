@@ -20,6 +20,7 @@ $images = json_decode(
     )
 );
 $ImageToShow = array();
+$rssfeed = '';
 foreach ($images as $image) {
     for ($i=0; $i < count($image); $i++) {
         /*$ImageToShow[$i] = array(

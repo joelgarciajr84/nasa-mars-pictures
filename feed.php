@@ -16,44 +16,40 @@ echo "<?xml version='1.0' encoding='UTF-8'?>
 <atom:link href='https://marspictures.herokuapp.com/feed.php' rel='self' type='application/rss+xml' />
 <language>en-us</language>";
 require 'rover.php';
+
 $Mars = new HelloMars();
-$xml = new XMLSerializer();
 
-$images = json_decode(
+$today = strtotime(date("Y-m-d"));
+$DateToSearch= date("Y-m-d",mt_rand(1080777600,$today));
+$RoverPick = mt_rand(0,2);
+$RoverArray = array_keys($Mars->rovers);
 
-    $Mars->getPictures(
-        '2015-10-04',
-        'curiosity'
-    )
-);
-$ImageToShow = array();
+$images = json_decode($Mars->getPictures($DateToSearch,$RoverArray[$RoverPick]));
+
+while (!$images->photos) {
+    $images = json_decode($Mars->getPictures($DateToSearch,$RoverArray[$RoverPick]));
+}
+if (isset($images) && !isset($images->photos)) {
+    header("Refresh:30");
+}else{
 $rssfeed = '';
 foreach ($images as $image) {
     for ($i=0; $i < count($image); $i++) {
-        /*$ImageToShow[$i] = array(
-        "id"            =>  $image[$i]->id,
-        "sol"           =>  $image[$i]->sol,
-        'camera_name'   =>  $image[$i]->camera->name,
-        'img_src'       =>  $image[$i]->img_src,
-        'earth_date'    =>  date("d/m/Y",strtotime($image[$i]->earth_date)),
-        'rover_name'    =>  $image[$i]->rover->name
-    );*/
-    $rssfeed .= '<item>';
-    $rssfeed .= '<title>' . $image[$i]->id. '</title>';
-    $rssfeed .= '<guid>' . $image[$i]->img_src. '</guid>';
-    $rssfeed .= '<w:id>' . $image[$i]->id. '</w:id>';
-    $rssfeed .= '<w:sol>' . $image[$i]->sol. '</w:sol>';
-    $rssfeed .= '<w:camera_name>' . $image[$i]->camera->name . '</w:camera_name>';
-    $rssfeed .= '<w:img_src>' . $image[$i]->img_src . '</w:img_src>';
-    $rssfeed .= '<w:earth_date>' . date("d/m/Y",strtotime($image[$i]->earth_date)) . '</w:earth_date>';
-    $rssfeed .= '<w:rover_name>' . $image[$i]->rover->name. '</w:rover_name>';
-    $rssfeed .= '<pubDate>' . date("D, d M Y H:i:s O", strtotime($image[$i]->earth_date)) . '</pubDate>';
-    $rssfeed .= '</item>';
+        $rssfeed .= '<item>';
+        $rssfeed .= '<title>'   .$image[$i]->id. '</title>';
+        $rssfeed .= '<guid>'    .$image[$i]->img_src. '</guid>';
+        $rssfeed .= '<w:id>'    .$image[$i]->id. '</w:id>';
+        $rssfeed .= '<w:sol>'   . $image[$i]->sol. '</w:sol>';
+        $rssfeed .= '<w:camera_name>' . $image[$i]->camera->name . '</w:camera_name>';
+        $rssfeed .= '<w:img_src>' . $image[$i]->img_src . '</w:img_src>';
+        $rssfeed .= '<w:earth_date>' . date("d/m/Y",strtotime($image[$i]->earth_date)) . '</w:earth_date>';
+        $rssfeed .= '<w:rover_name>' . $image[$i]->rover->name. '</w:rover_name>';
+        $rssfeed .= '<pubDate>' . date("D, d M Y H:i:s O", strtotime($image[$i]->earth_date)) . '</pubDate>';
+        $rssfeed .= '</item>';
     }
-    //$feedoutput = $xml->generateValidXmlFromArray($ImageToShow);
 }
 $rssfeed .= '</channel>';
 $rssfeed .= '</rss>';
 
    echo $rssfeed;
-?>
+}

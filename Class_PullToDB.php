@@ -1,5 +1,5 @@
 <?php
-class PullToDB {
+class PullToDB extends HelloMars {
 
     public function DB_Connect($server, $port,$dbname,$user, $password){
 

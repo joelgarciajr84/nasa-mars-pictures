@@ -30,7 +30,7 @@ while (!$images->photos) {
     $images = json_decode($Mars->getPictures($DateToSearch,$RoverArray[$RoverPick]));
 }
 if (isset($images) && !isset($images->photos)) {
-    exit();
+    header("Refresh:120");
 }else{
 $rssfeed = '';
 foreach ($images as $image) {

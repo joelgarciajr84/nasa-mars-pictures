@@ -2,7 +2,8 @@
 header("Content-type: text/xml");
 
 echo "<?xml version='1.0' encoding='UTF-8'?>
-<rss version='2.0' xmlns:w='http://tempuri.org'>
+<rss version='2.0'
+    xmlns:w='http://tempuri.org'
 	xmlns:wfw='http://wellformedweb.org/CommentAPI/'
 	xmlns:dc='http://purl.org/dc/elements/1.1/'
 	xmlns:atom='http://www.w3.org/2005/Atom'
@@ -12,6 +13,7 @@ echo "<?xml version='1.0' encoding='UTF-8'?>
 <title>NASA PHOTOS</title>
 <link>https://marspictures.herokuapp.com/</link>
 <description>Nasa Photos</description>
+<atom:link href='https://marspictures.herokuapp.com/feed.php' rel='self' type='application/rss+xml' />
 <language>en-us</language>";
 require 'rover.php';
 $Mars = new HelloMars();

@@ -7,7 +7,8 @@ echo "<?xml version='1.0' encoding='UTF-8'?>
 <title>NASA PHOTOS</title>
 <link>https://marspictures.herokuapp.com/</link>
 <description>Nasa Photos</description>
-<language>en-us</language>";
+<language>en-us</language>
+<id>unique photo id</id>";
 require 'rover.php';
 $Mars = new HelloMars();
 $xml = new XMLSerializer();

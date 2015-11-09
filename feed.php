@@ -1,16 +1,13 @@
 <?php
-header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-$rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-$rssfeed .= '<rss version="2.0">';
-$rssfeed .= '<channel>';
-$rssfeed .= '<title>Mars Photos Feed</title>';
-$rssfeed .= '<id>Unique Photo ID</id>';
-$rssfeed .= '<link>https://marspictures.herokuapp.com</link>';
-$rssfeed .= '<description>Mars PhotosRSS feed</description>';
-$rssfeed .= '<language>en-us</language>';
-$rssfeed .= '<copyright>Copyright (C) 2009 mywebsite.com</copyright>';
+header("Content-type: text/xml");
 
-
+echo "<?xml version='1.0' encoding='UTF-8'?>
+<rss version='2.0'>
+<channel>
+<title>NASA PHOTOS</title>
+<link>https://marspictures.herokuapp.com/</link>
+<description>Nasa Photos</description>
+<language>en-us</language>";
 require 'rover.php';
 $Mars = new HelloMars();
 $xml = new XMLSerializer();

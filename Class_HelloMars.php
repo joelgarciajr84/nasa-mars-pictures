@@ -11,7 +11,7 @@ class  HelloMars
 			"spirit"=>'Spirit'
 			);
 			$this->date = date('Y-m-d');
-			$this->apikey =  "65FEvGTJth7eXCMnDdvbD5oURpoJhStlch6sp7Ud";
+			$this->apikey =  "57bz8wkIDz6cywUxiRIghcPu78JSxAz1EQNlseS1";
 			$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 	}
@@ -19,7 +19,6 @@ class  HelloMars
 	public function CheckConnection(){
 	    $connected = @fsockopen("www.google.com", 80);
 	    if (!$connected){
-
 			$connStatus = false;
 
 	    }else{

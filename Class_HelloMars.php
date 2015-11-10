@@ -11,7 +11,7 @@ class  HelloMars
 			"spirit"=>'Spirit'
 			);
 			$this->date = date('Y-m-d');
-			$this->apikey =  "qolE0aT3OI1tsmNFSvBJM72MPDZOYlF9IARTMDi6";
+			$this->apikey =  "kMuk2QgYSZzn5fMklgQC3bPSvBId53jHGAG8lzzQ";
 			$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 	}

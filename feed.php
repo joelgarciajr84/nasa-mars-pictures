@@ -26,11 +26,8 @@ $RoverArray = array_keys($Mars->rovers);
 
 $images = json_decode($Mars->getPictures($DateToSearch,$RoverArray[$RoverPick]));
 
-while (!$images->photos) {
-    $images = json_decode($Mars->getPictures($DateToSearch,$RoverArray[$RoverPick]));
-}
 if (isset($images) && !isset($images->photos)) {
-    header("Refresh:120");
+    exit(); //Just to avoid reach the API limit
 }else{
 $rssfeed = '';
 foreach ($images as $image) {

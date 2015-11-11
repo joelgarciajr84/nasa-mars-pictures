@@ -1,17 +1,16 @@
 <?php
-class  HelloMars
-{
+class  HelloMars {
 
-	function __construct()
-	{
+	function __construct() {
 
 		$this->rovers = array(
 			"curiosity" => 'Curiosity',
 			"opportunity"=>'Opportunity',
 			"spirit"=>'Spirit'
 			);
+
 			$this->date = date('Y-m-d');
-			$this->apikey =  "bvSPK4AgJExa8ElVXe0A4w0HkQVqxBErn1OZaCYe";
+			$this->apikey =  "FLbtQ21tMykl1rrcFqDmuOLFVoitHNRVeYZymTtv";
 			$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 	}
@@ -33,12 +32,10 @@ class  HelloMars
 		$this->rover = $rover;
 		if (!empty($this->date) && !empty($this->rover)) {
 			$this->data = file_get_contents($this->baseurl.$this->rover.'/photos?earth_date='.$this->date.'&api_key='.$this->apikey);
+
+			return $this->data;
 		}else{
 			return "error";
 		}
-
-		return $this->data;
-
 	}
-
 }

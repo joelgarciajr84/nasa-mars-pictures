@@ -10,7 +10,7 @@ class  HelloMars {
 			);
 
 			$this->date = date('Y-m-d');
-			$this->apikey =  "FLbtQ21tMykl1rrcFqDmuOLFVoitHNRVeYZymTtv";
+			$this->apikey =  "";
 			$this->baseurl ="https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 	}
